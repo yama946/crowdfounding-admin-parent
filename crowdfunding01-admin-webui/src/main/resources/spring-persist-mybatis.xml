@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			    http://www.springframework.org/schema/beans/spring-beans.xsd
+			    http://www.springframework.org/schema/context
+			    http://www.springframework.org/schema/context/spring-context.xsd">
+        <!--spring整合mybatis，将mybastis所需要的bean整合自动生成放入ioc容器中-->
+<!--       第一步：导入外部文件，包含jdbc配置-->
+        <context:property-placeholder location="classpath:jdbc.properties"/>
+
+<!--       第二步：配置数据源-->
+        <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+            <property name="driverClassName" value="${jdbc.driver}"/>
+            <property name="url" value="${jdbc.url}" />
+            <property name="username" value="${jdbc.username}" />
+            <property name="password" value="${jdbc.password}"/>
+        </bean>
+
+<!--       第三步：配置sqlSessionFactoryBean类进行获取连接，以及配置信息交割MapperScannerConfigurer-->
+        <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+            <!-- 装配数据源-->
+            <property name="dataSource" ref="dataSource" />
+            <!-- 指定MyBatis 全局配置文件位置-->
+            <property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
+            <!-- 指定Mapper 配置文件位置-->
+            <property name="mapperLocations" value="classpath:mybatis/mapper/*.xml" />
+            <!-- 配置MyBatis 的分页插件，插件其实就是mybatis拦截器数组，拦截发往mysql的sql语句进行改变，返回数据-->
+            <property name="plugins">
+                <array>
+                    <!-- 配置PageHelper -->
+                    <bean class="com.github.pagehelper.PageHelper">
+                        <!-- 配置相关属性-->
+                        <property name="properties">
+                            <props>
+                                <!-- 配置数据库方言，告诉PageHelper 当前使用的具体数据库，-->
+                                <!-- 让PageHelper 可以根据当前数据库生成对应的分页SQL 语句-->
+                                <prop key="dialect">mysql</prop>
+                                <!-- 配置页码的合理化修正,数据只有1-20，传来数据是50，修正为20，负数修正为1-->
+                                <!-- 让PageHelper 自动把浏览器传来的PageNum 修正到0~总页数范围-->
+                                <prop key="reasonable">true</prop>
+                            </props>
+                        </property>
+                    </bean>
+                </array>
+            </property>
+        </bean>
+
+<!--       第四步；配置MapperScannerConfigurer，用于代理mapper接口并放入ioc容器中-->
+        <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+            <!-- 使用basePackage 属性指定Mapper 接口所在包,生成代理类放到ioc容器中-->
+            <property name="basePackage" value="com.yama.crowd.mapper" />
+        </bean>
+
+</beans>
