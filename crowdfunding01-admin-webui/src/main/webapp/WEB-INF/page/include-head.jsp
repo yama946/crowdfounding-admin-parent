@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="pagination/pagination.css">
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="ztree/zTreeStyle.css"/>
 <style>
     .tree li {
         list-style-type: none;
@@ -30,6 +31,7 @@
 <script type="text/javascript" src="script/docs.min.js"></script>
 <script type="text/javascript" src="pagination/jquery.pagination.js"></script>
 <script type="text/javascript" src="layer/layer.js"></script>
+<script type="text/javascript" src="ztree/jquery.ztree.all-3.5.min.js"></script>
 <script type="text/javascript">
     $(function () {
         $(".list-group-item").click(function(){

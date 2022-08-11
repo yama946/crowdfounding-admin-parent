@@ -61,7 +61,13 @@
     <!--新增页面-->
     <mvc:view-controller path="/admin/to/add/page.html" view-name="page/admin-add" />
 
+    <!--  1、直接定位到页面，数据通过ajax请求进行获取
+          2、另一种获取数据的方式，就是通过controller进行获取数据，
+          将数据放到model中，在jsp中通过el表达式进行获取数据
+      -->
     <mvc:view-controller path="/role/to/page.html" view-name="page/role-page"/>
+
+    <mvc:view-controller path="/menu/to/page.html" view-name="page/menu-page"/>
 
     <!--
     相当于

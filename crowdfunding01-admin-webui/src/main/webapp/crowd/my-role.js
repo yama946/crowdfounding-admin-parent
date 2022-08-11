@@ -23,6 +23,7 @@ function getPageInfoRemote(){
         dataType:"json"
     });
 
+    console.log("ajax函数返回值");
     console.log(ajaxResult);
 
     //判断当前响应状态码是否为200

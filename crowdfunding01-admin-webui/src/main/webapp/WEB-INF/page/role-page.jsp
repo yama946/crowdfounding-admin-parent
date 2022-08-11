@@ -45,6 +45,8 @@
                     async:false,
                     dataType:"json",
                     success:function (response) {
+                        console.log("ajax中的返回值：");
+                        console.log(response);
                         var result = response.result;
                         if (result){
                             layer.msg("操作成功");
@@ -340,7 +342,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 <%--引入模态框，模态框在不调用的情况下是隐藏的。--%>
 <%@include file="modal-role-add.jsp"%>

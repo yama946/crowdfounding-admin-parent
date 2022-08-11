@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="utf-8">
 <head>
-    <title>分页数据</title>
     <%@ include file="include-head.jsp" %>
     <script type="text/javascript">
         $(function(){
