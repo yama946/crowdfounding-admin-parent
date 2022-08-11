@@ -2,10 +2,7 @@ package com.yama.crowd.mvc.config;
 
 import com.google.gson.Gson;
 import com.yama.crowd.entity.Admin;
-import com.yama.crowd.exceptions.AccessForbiddenException;
-import com.yama.crowd.exceptions.LoginAcctAlreadyInUseException;
-import com.yama.crowd.exceptions.LoginAcctAlreadyInUserUpdateException;
-import com.yama.crowd.exceptions.LoginFaliedException;
+import com.yama.crowd.exceptions.*;
 import com.yama.crowd.util.CrowdUtil;
 import com.yama.crowd.util.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +20,17 @@ import java.io.IOException;
 @Slf4j
 @ControllerAdvice
 public class CrowdExceptionResolver {
+
+    @ExceptionHandler(value = NameInRoleAlreadyException.class)
+    public ModelAndView resolveNameInRoleAlreadyException(
+            NameInRoleAlreadyException exception,
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws IOException {
+        // 只是指定当前异常对应的页面即可
+        String viewName = "page/role-page";
+        return common(exception, request, response, viewName);
+    }
 
 
     @ExceptionHandler(value = LoginAcctAlreadyInUserUpdateException.class)
@@ -93,6 +101,7 @@ public class CrowdExceptionResolver {
             Gson gson = new Gson();
             String resultJson = gson.toJson(result);
             try {
+                log.debug("ajax异常，返回异常信息");
                 response.getWriter().write(resultJson);
             } catch (IOException e) {
                 e.printStackTrace();

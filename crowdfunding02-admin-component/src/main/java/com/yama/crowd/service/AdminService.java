@@ -3,6 +3,9 @@ package com.yama.crowd.service;
 import com.github.pagehelper.PageInfo;
 import com.yama.crowd.entity.Admin;
 
+/**
+ * 用户模块业务层接口
+ */
 public interface AdminService {
     /**
      * 根据登陆账号和密码判断是否存在用户

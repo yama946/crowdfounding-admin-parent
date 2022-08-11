@@ -3,6 +3,7 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+
 <!--    spring整合springmvc，以及springmvc基本配置-->
     <context-param>
         <param-name>contextConfigLocation</param-name>

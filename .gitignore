@@ -19,10 +19,8 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
-
+# 本文件中内容，如果再提交一次版本后添加，添加的忽略内容在提交的版本中无效
 .idea
 *.iml
+# 也会会直接忽略target目录
 */target/

@@ -12,7 +12,7 @@
         function initPagination() {
             //总记录数
             var num_entries = ${requestScope.pageInfo.total};
-            // 创建分页
+            // 渲染分页导航栏
             $("#Pagination").pagination(num_entries, {
                 num_edge_entries: 2, //边缘页数
                 num_display_entries: 4, //主体页数
@@ -20,7 +20,7 @@
                 current_page:${requestScope.pageInfo.pageNum-1},
                 prev_text:"上一页",
                 next_text:"下一页",
-                callback: pageselectCallback,
+                callback: pageselectCallback,//回调函数
             });
         };
         //pageIndex表示当前页

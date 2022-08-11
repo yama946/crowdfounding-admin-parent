@@ -20,6 +20,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * 用户模块业务层接口实现类
+ */
 @Slf4j
 @Service("adminService")
 public class AdminServiceImpl implements AdminService {
