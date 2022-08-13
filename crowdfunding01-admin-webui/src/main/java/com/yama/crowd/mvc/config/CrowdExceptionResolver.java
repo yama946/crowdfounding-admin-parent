@@ -102,6 +102,7 @@ public class CrowdExceptionResolver {
             String resultJson = gson.toJson(result);
             try {
                 log.debug("ajax异常，返回异常信息");
+                exception.printStackTrace();
                 response.getWriter().write(resultJson);
             } catch (IOException e) {
                 e.printStackTrace();

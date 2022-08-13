@@ -277,10 +277,10 @@
                     "dataType":"json",
                     "success":function(response){
                         var result = response.result;
-                        if(result == "SUCCESS") {
+                        if(result) {
                             layer.msg("操作成功！");
                         }
-                        if(result == "FAILED") {
+                        if(!result) {
                             layer.msg("操作失败！"+response.message);
                         }
                     },

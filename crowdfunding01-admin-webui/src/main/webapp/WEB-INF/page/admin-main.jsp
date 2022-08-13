@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="utf-8">
 <head>
-    <jsp:include page="include-head.jsp" />
+    <%@include file="include-head.jsp"%>
 </head>
 
 <body>
@@ -43,7 +43,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>
 </body>

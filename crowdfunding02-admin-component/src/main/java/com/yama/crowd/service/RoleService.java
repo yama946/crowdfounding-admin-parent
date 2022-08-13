@@ -36,5 +36,24 @@ public interface RoleService {
      */
     void remove(List<Integer> roleId);
 
+    /**
+     * 获取已分配的角色信息
+     * @param adminId
+     * @return
+     */
+    List<Role> getAssignedRole(int adminId);
 
+    /**
+     * 查询未分配的角色信息
+     * @param adminId
+     * @return
+     */
+    List<Role> getUnAssignedRole(int adminId);
+
+    /**
+     * 保存用户和角色色信息
+     * @param adminId
+     * @param roleIdList
+     */
+    void saveAssignedAdminRole(int adminId, List<Integer> roleIdList);
 }

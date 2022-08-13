@@ -87,7 +87,7 @@
                                         <td>${admin.email }</td>
                                         <td>
 
-                                            <a href="assign/admin/to/role/page1.html?adminId=${admin.id}&pageNum=${requestScope.pageInfo.pageNum}&keyword=${param.keyword}" type="button" class="btn btn-success btn-xs">
+                                            <a href="assign/admin/to/role/page.html?adminId=${admin.id}&pageNum=${requestScope.pageInfo.pageNum}&keyword=${param.keyword}" type="button" class="btn btn-success btn-xs">
                                                 <i class=" glyphicon glyphicon-check"></i>
                                             </a>
                                             <%--更新按钮--%>
