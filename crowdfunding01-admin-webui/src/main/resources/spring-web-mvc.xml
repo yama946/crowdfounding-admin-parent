@@ -43,15 +43,16 @@
         </property>
     </bean>
 
-<!--    配置拦截器-->
-    <mvc:interceptors>
+    <!--    配置拦截器-->
+    <!--<mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/admin/to/login/index.html"/>
             <mvc:exclude-mapping path="/admin/do/login.html"/>
             <bean id="loginInterceptor" class="com.yama.crowd.mvc.interceptor.LoginInterceptor" />
         </mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors>-->
+
     
     
     <mvc:view-controller path="/admin/to/login/index.html" view-name="page/admin-login"/>
@@ -68,6 +69,11 @@
     <mvc:view-controller path="/role/to/page.html" view-name="page/role-page"/>
 
     <mvc:view-controller path="/menu/to/page.html" view-name="page/menu-page"/>
+
+
+    <mvc:view-controller path="/to/no/auth/page.html" view-name="page/auth-erro"/>
+
+
 
     <!--
     相当于

@@ -68,6 +68,15 @@
     <sql id="Base_Column_List" >
     id, name, title, category_id
   </sql>
+    <select id="selectAssignedAuthNameByAdminId" resultType="String" parameterType="int">
+        select t_auth.`name` from
+        inner_admin_role ar
+        join inner_role_auth ra
+        on ar.role_id=ra.role_id
+        join t_auth
+        on t_auth.id=ra.auth_id
+        where ar.admin_id=#{adminId} and t_auth.`name` is not null and t_auth.name != ""
+    </select>
     <select id="selectRoleAllauth" resultType="int">
         select
         auth_id

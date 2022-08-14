@@ -3,12 +3,17 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-
-<!--    spring整合springmvc，以及springmvc基本配置-->
+    <!--    spring整合springmvc，以及springmvc基本配置-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring-persist-tx.xml</param-value>
     </context-param>
+
+    <!--配置springsecurity过滤器,其filter-name标签值必须是：springSecurityFilterChain-->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
 
 <!--    第二步:配置过滤器，控制语言编码格式-->
     <filter>
@@ -29,8 +34,14 @@
     </filter>
 
     <filter-mapping>
-        <filter-name>characterEncodingFilter</filter-name>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <!--注意：此处不能使用**,会导致springsecurity失效-->
         <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>characterEncodingFilter</filter-name>
+        <url-pattern>/**</url-pattern>
     </filter-mapping>
 
     <!--    配置监听器，用来加载spring IOC容器-->
@@ -40,7 +51,7 @@
 
     <!--    第一步；配置前端控制器，用来接受请求进行导向处理-->
     <servlet>
-        <servlet-name>dispatcherServlet</servlet-name>
+        <servlet-name>springDispatcherServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
@@ -50,11 +61,11 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>dispatcherServlet</servlet-name>
+        <servlet-name>springDispatcherServlet</servlet-name>
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>dispatcherServlet</servlet-name>
+        <servlet-name>springDispatcherServlet</servlet-name>
         <url-pattern>*.json</url-pattern>
     </servlet-mapping>
 

@@ -16,6 +16,10 @@ import java.io.IOException;
 
 /**
  * 注解配置异常控制器
+ *springsecurity中权限访问异常中，如果是在security配置类中配置权限导致异常，将会走配置类中的异常
+ * 如果配置类中没有配置相关异常处理机制，将会报错默认的错误页面
+ *
+ * 注解@PreAuthority作用在控制器方法上的权限控制，将会走springmvc中配置的注解异常处理机制
  */
 @Slf4j
 @ControllerAdvice

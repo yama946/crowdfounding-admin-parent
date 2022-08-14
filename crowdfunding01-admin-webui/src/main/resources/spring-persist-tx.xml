@@ -50,10 +50,12 @@
             <tx:method name="update*" propagation="REQUIRES_NEW" rollback-for="java.lang.Exception" />
         </tx:attributes>
     </tx:advice>
-<!--     第四步：配置事务管理与切面或者说是切面表达式的对应关系-->
+    <!--第四步：配置事务管理与切面或者说是切面表达式的对应关系-->
     <aop:config>
         <aop:pointcut id="pt1" expression="execution(* com.yama.crowd.service.impl.*ServiceImpl.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pt1" />
     </aop:config>
+
+    <bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 
 </beans>

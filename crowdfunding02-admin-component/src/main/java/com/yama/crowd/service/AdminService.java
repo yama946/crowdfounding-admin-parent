@@ -49,4 +49,11 @@ public interface AdminService {
      * @return
      */
     Admin getAdminById(Integer adminId);
+
+    /**
+     * 通过账户名获取admin
+     * @param loginAcct
+     * @return
+     */
+    Admin getAdminByLoginAcct(String loginAcct);
 }

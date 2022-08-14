@@ -57,4 +57,15 @@ public class AuthServiceImpl implements AuthService {
             authMapper.saveRoleAssignAuthInformation(roleId,authIdArray);
         }
     }
+
+    /**
+     * 根据用户id查询当前角色名
+     * @param adminId
+     * @return
+     */
+    @Override
+    public List<String> getAssignedAuthNameByAdminId(Integer adminId) {
+        List<String> authName = authMapper.selectAssignedAuthNameByAdminId(adminId);
+        return authName;
+    }
 }

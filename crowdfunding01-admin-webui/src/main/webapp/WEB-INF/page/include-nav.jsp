@@ -3,7 +3,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <div><a  class="navbar-brand" style="font-size:32px;" href="admin/to/main/page.html">众筹平台 - 控制面板</a></div>
+            <div><a  class="navbar-brand" style="font-size:32px;" href="admin/to/main.html">众筹平台 - 控制面板</a></div>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -17,7 +17,8 @@
                             <li><a href="#"><i class="glyphicon glyphicon-cog"></i> 个人设置</a></li>
                             <li><a href="#"><i class="glyphicon glyphicon-comment"></i> 消息</a></li>
                             <li class="divider"></li>
-                            <li><a href="admin/do/logout.html"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
+                            <li><a href="security/admin/do/logout.html"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
+                            <!--<li><a href="admin/do/logout.html"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>-->
                         </ul>
                     </div>
                 </li>

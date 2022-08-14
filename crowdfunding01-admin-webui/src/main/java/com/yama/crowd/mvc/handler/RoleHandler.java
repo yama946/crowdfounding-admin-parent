@@ -5,6 +5,7 @@ import com.yama.crowd.entity.Role;
 import com.yama.crowd.service.RoleService;
 import com.yama.crowd.util.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,6 +47,7 @@ public class RoleHandler {
      * @param name
      * @return
      */
+    @PreAuthorize("hasAnyAuthority('role:delete','role:get','role:add')")
     @RequestMapping("/role/save.json")
     public ResultUtil<String> saveRole(
             @RequestParam("name")String name
@@ -60,6 +62,7 @@ public class RoleHandler {
      * @param role
      * @return
      */
+    @PreAuthorize("hasAnyAuthority('role:delete','role:get','role:add')")
     @RequestMapping("/role/update.json")
     public ResultUtil<String> updateRole(Role role){
         roleService.update(role);
@@ -71,6 +74,7 @@ public class RoleHandler {
      * @param roleId
      * @return
      */
+    @PreAuthorize("hasAnyAuthority('role:delete','role:get','role:add')")
     @RequestMapping("/role/remove/by/id/array.json")
     public ResultUtil<String> removeRole(@RequestBody List<Integer> roleId){
         roleService.remove(roleId);

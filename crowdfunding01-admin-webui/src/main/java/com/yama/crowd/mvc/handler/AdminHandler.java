@@ -5,6 +5,7 @@ import com.yama.crowd.entity.Admin;
 import com.yama.crowd.service.AdminService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,6 +33,7 @@ public class AdminHandler {
      * 用户登陆处理
      * @return
      */
+    @Deprecated//加入springsecurity后此方法废弃
     @RequestMapping("admin/do/login.html")
     public String doLogin(@RequestParam("loginAccount")String loginAccount,
                           @RequestParam("loginPassword")String loginPassword, HttpSession session){
@@ -53,6 +55,7 @@ public class AdminHandler {
      * @param session
      * @return
      */
+    @Deprecated//加入springsecurity后此方法废弃
     @RequestMapping("admin/do/logout.html")
     public String doLogout(HttpSession session){
         session.invalidate();

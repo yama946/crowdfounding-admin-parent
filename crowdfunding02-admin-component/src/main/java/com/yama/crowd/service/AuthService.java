@@ -27,4 +27,11 @@ public interface AuthService {
      * @param map
      */
     void saveRoleAuthRelathinship(Map<String, List<Integer>> map);
+
+    /**
+     * 根据用户id查询当前用户具有的权限
+     * @param adminId
+     * @return
+     */
+    List<String> getAssignedAuthNameByAdminId(Integer adminId);
 }

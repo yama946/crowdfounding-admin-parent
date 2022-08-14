@@ -34,4 +34,6 @@ public interface AuthMapper {
     void deleteRoleAllAuth(int roleId);
 
     void saveRoleAssignAuthInformation(@Param("roleId")int roleId, @Param("authIdArray") List<Integer> authIdArray);
+
+    List<String> selectAssignedAuthNameByAdminId(Integer adminId);
 }

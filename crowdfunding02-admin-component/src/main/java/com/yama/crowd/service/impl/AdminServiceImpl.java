@@ -15,6 +15,7 @@ import com.yama.crowd.util.CrowdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +30,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private AdminMapper adminMapper;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /**
      * 登陆功能
@@ -110,8 +114,8 @@ public class AdminServiceImpl implements AdminService {
     public void saveAdmin(Admin admin) {
         // 针对登录密码进行加密
         String userPswd = admin.getUserPswd();
-        String target = CrowdUtil.md5(userPswd);
-//        String target = bCryptPasswordEncoder.encode(userPswd);
+//        String target = CrowdUtil.md5(userPswd);
+        String target = bCryptPasswordEncoder.encode(userPswd);
         admin.setUserPswd(target);
         // 执行保存，如果账户被占用会抛出异常
         // 表单的唯一性约束会导致插入失败
@@ -154,7 +158,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     /**
-     *
+     * 根据id查询指定用户，进行表单回显数据
      * @param adminId
      * @return
      */
@@ -162,5 +166,19 @@ public class AdminServiceImpl implements AdminService {
     public Admin getAdminById(Integer adminId) {
         Admin admin = adminMapper.selectByPrimaryKey(adminId);
         return admin;
+    }
+
+    /**
+     * springsecurity中通过账号获取admin
+     * @param loginAcct
+     * @return
+     */
+    @Override
+    public Admin getAdminByLoginAcct(String loginAcct) {
+        AdminExample adminExample = new AdminExample();
+        Criteria criteria = adminExample.createCriteria();
+        criteria.andLoginAcctEqualTo(loginAcct);
+        List<Admin> admins = adminMapper.selectByExample(adminExample);
+        return admins.get(0);
     }
 }
